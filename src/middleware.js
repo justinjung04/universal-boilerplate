@@ -10,9 +10,7 @@ export default (req, res) => {
 	            <title>My Universal App</title>
 	        </header>
 	        <body>
-	            <div id='app'>
-					${renderToString(<App />)}
-	            </div>
+	            <div id='app'>${renderToString(<App />)}</div>
 	            <script src='bundle.js'></script>
 	        </body>
 	    </html>
