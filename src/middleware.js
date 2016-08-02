@@ -8,21 +8,29 @@ import routes from './routes';
 
 export default (req, res) => {
 	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-		res.send(`
-			<!doctype html>
-		    <html>
-		        <header>
-		            <title>My Universal App</title>
-		        </header>
-		        <body>
-		            <div id='app'>${renderToString(
-		            	<Provider store={createStore(reducers)}>
-							<RouterContext {...renderProps} />
-		            	</Provider>
-		            )}</div>
-		            <script src='bundle.js'></script>
-		        </body>
-		    </html>
-		`);
+		if(error) {
+			res.status(500).send(error.message);
+		} else if(redirectLocation) {
+			res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+		} else if(renderProps) {
+			res.status(200).send(`
+				<!doctype html>
+				<html>
+					<header>
+						<title>My Universal App</title>
+					</header>
+					<body>
+						<div id='app'>${renderToString(
+							<Provider store={createStore(reducers)}>
+								<RouterContext {...renderProps} />
+							</Provider>
+						)}</div>
+						<script src='bundle.js'></script>
+					</body>
+				</html>
+			`);
+		} else {
+			res.status(404).send('Not found');
+		}
 	});
 };
