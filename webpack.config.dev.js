@@ -26,7 +26,10 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel',
-				include: path.resolve(__dirname, 'src')
+				include: path.resolve(__dirname, 'src'),
+				query: {
+					presets: [ 'react-hmre' ]
+				}
 		    }
 		]
 	}

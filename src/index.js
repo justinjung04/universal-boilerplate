@@ -20,20 +20,6 @@ render(
 );
 
 if(process.env.NODE_ENV == 'development' && module.hot) {
-	module.hot.accept('./routes', () => {
-		const newRoutes = require('./routes').default;
-		render(
-			<Provider store={store}>
-				<Router history={history}>
-					{ newRoutes }
-				</Router>
-			</Provider>,
-			document.getElementById('app')
-		);
-	});
-}
-
-if(process.env.NODE_ENV == 'development' && module.hot) {
 	module.hot.accept('./reducers', () => {
 		store.replaceReducer(require('./reducers').default);
 	});
