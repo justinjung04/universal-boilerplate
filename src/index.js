@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
@@ -10,7 +10,7 @@ import routes from './routes';
 const store = createStore(reducers);
 const history = syncHistoryWithStore(browserHistory, store);
 
-ReactDOM.render(
+render(
 	<Provider store={store}>
 		<Router history={history}>
 			{ routes }
@@ -22,7 +22,7 @@ ReactDOM.render(
 if(process.env.NODE_ENV == 'development' && module.hot) {
 	module.hot.accept('./routes', () => {
 		const newRoutes = require('./routes').default;
-		ReactDOM.render(
+		render(
 			<Provider store={store}>
 				<Router history={history}>
 					{ newRoutes }
