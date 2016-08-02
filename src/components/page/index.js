@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router';
 import Header from '../header';
 
 export default class Page extends Component {
@@ -10,6 +10,9 @@ export default class Page extends Component {
 				<div>This is page 1</div>
 				<img src='/assets/image.jpg' />
 				<br />
+				<Link to='/'>
+					<button>Go to home</button>
+				</Link>
 			</div>
 		);
 	}
