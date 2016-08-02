@@ -12,21 +12,21 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('production'),
-				BUILD: true,
+				NODE_ENV: JSON.stringify('production')
 			}
 		}),
 		new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, 'src', 'assets'),
-                to: path.resolve(__dirname, 'dist', 'assets')
-            }
-        ])
+			compressor: {
+				warnings: false
+			}
+		}),
+		new CopyWebpackPlugin([
+			{
+				from: path.resolve(__dirname, 'src', 'assets'),
+				to: path.resolve(__dirname, 'dist', 'assets')
+			}
+		]),
+		new ExtractTextPlugin('bundle.css')
 	],
 	module: {
 		loaders: [
@@ -34,7 +34,7 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel',
 				include: path.resolve(__dirname, 'src')
-		    }
+			}
 		]
 	}
 };

@@ -16,8 +16,7 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('development'),
-				BUILD: true
+				NODE_ENV: JSON.stringify('development')
 			}
 		})
 	],
@@ -30,7 +29,7 @@ module.exports = {
 				query: {
 					presets: [ 'react-hmre' ]
 				}
-		    }
+			}
 		]
 	}
 };
