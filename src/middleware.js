@@ -18,6 +18,7 @@ export default (req, res) => {
 				<html>
 					<header>
 						<title>My Universal App</title>
+						<link rel='stylesheet' href='bundle.css'>
 					</header>
 					<body>
 						<div id='app'>${renderToString(

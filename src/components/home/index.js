@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Header from '../header';
 import { toggleTodo } from '../../actions/todos';
+if(process.env.WEBPACK) require('./index.scss');
 
 class Home extends Component {
 	render() {

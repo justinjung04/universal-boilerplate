@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: [
@@ -16,9 +18,11 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('development')
+				NODE_ENV: JSON.stringify('development'),
+				WEBPACK: true
 			}
-		})
+		}),
+        new ExtractTextPlugin('bundle.css')
 	],
 	module: {
 		loaders: [
@@ -29,7 +33,15 @@ module.exports = {
 				query: {
 					presets: [ 'react-hmre' ]
 				}
+			},
+			{
+				test: /\.scss/,
+				loader: ExtractTextPlugin.extract('style', 'css!sass!postcss'),
+				include: path.resolve(__dirname, 'src')
 			}
 		]
-	}
+	},
+    postcss: function() {
+        return [autoprefixer];
+    }
 };

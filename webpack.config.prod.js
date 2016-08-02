@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: path.resolve(__dirname, 'src'),
@@ -12,7 +14,8 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('production')
+				NODE_ENV: JSON.stringify('production'),
+				WEBPACK: true
 			}
 		}),
 		new webpack.optimize.UglifyJsPlugin({
@@ -32,9 +35,17 @@ module.exports = {
 		loaders: [
 			{ 
 				test: /\.js$/,
-				loader: 'babel',
+				loader: 'babel',g
+				include: path.resolve(__dirname, 'src')
+			},
+			{
+				test: /\.scss/,
+				loader: ExtractTextPlugin.extract('style', 'css!sass!postcss'),
 				include: path.resolve(__dirname, 'src')
 			}
 		]
-	}
+	},
+    postcss: function() {
+        return [autoprefixer];
+    }
 };

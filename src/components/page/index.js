@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Header from '../header';
+if(process.env.WEBPACK) require('./index.scss');
 
 export default class Page extends Component {
 	render() {
