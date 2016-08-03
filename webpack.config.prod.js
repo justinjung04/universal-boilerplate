@@ -35,7 +35,7 @@ module.exports = {
 		loaders: [
 			{ 
 				test: /\.js$/,
-				loader: 'babel',g
+				loader: 'babel',
 				include: path.resolve(__dirname, 'src')
 			},
 			{
