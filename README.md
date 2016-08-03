@@ -21,3 +21,8 @@ npm run build
 ```sh
 npm run serve
 ```
+
+### Switch versions (ex. v1.2.0)
+```sh
+git checkout v1.2.0
+```
