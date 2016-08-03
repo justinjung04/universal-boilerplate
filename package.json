@@ -1,7 +1,7 @@
 {
   "name": "universal-boilerplate",
   "version": "1.5.0",
-  "description": "Universal/isomorphic boilerplate with react, redux, webpack and express",
+  "description": "Isomorphic/universal boilerplate with react, redux, webpack and express",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
