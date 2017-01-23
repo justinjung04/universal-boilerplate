@@ -17,9 +17,9 @@ export default (req, res) => {
 				res.status(200).send(`
 					<!doctype html>
 					<html>
-						<header>
+						<head>
 							<title>My Universal App</title>
-						</header>
+						</head>
 						<body>
 							<div id='app'></div>
 							<script src='bundle.js'></script>
@@ -30,10 +30,10 @@ export default (req, res) => {
 				res.status(200).send(`
 					<!doctype html>
 					<html>
-						<header>
+						<head>
 							<title>My Universal App</title>
 							<link rel='stylesheet' href='bundle.css'>
-						</header>
+						</head>
 						<body>
 							<div id='app'>${renderToString(
 								<Provider store={createStore(reducers)}>
