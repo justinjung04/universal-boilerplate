@@ -35,17 +35,32 @@ module.exports = {
 		loaders: [
 			{ 
 				test: /\.js$/,
-				loader: 'babel',
+				use: {
+					loader: 'babel-loader'
+				},
 				include: path.resolve(__dirname, 'src')
 			},
 			{
 				test: /\.scss/,
-				loader: ExtractTextPlugin.extract('style', 'css!sass!postcss'),
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						'css-loader',
+						'sass-loader',
+						{
+							loader: 'postcss-loader',
+							options: {
+								plugins: function() {
+	                return [
+	                  require('autoprefixer')
+	                ];
+	              }
+							}
+						}
+					],
+				}),
 				include: path.resolve(__dirname, 'src')
 			}
 		]
-	},
-    postcss: function() {
-        return [autoprefixer];
-    }
+	}
 };

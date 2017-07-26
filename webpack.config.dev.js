@@ -14,7 +14,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NamedModulesPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('development'),
@@ -26,20 +26,33 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js$/,
-				loader: 'babel',
+				use: {
+					loader: 'babel-loader',
+					query: {
+						presets: [ 'react-hmre' ]
+					}
+				},
 				include: path.resolve(__dirname, 'src'),
-				query: {
-					presets: [ 'react-hmre' ]
-				}
 			},
 			{
 				test: /\.scss/,
-				loader: 'style!css!sass!postcss',
+				use: [
+					'style-loader',
+					'css-loader',
+					'sass-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							plugins: function() {
+                return [
+                  require('autoprefixer')
+                ];
+              }
+						}
+					}
+				],
 				include: path.resolve(__dirname, 'src')
 			}
 		]
-	},
-    postcss: function() {
-        return [autoprefixer];
-    }
+	}
 };
