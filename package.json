@@ -1,13 +1,13 @@
 {
-  "name": "webviewer-website",
-  "version": "1.0.0",
-  "description": "WebViewer website",
+  "name": "universal-boilerplate",
+  "version": "2.0.0",
+  "description": "Isomorphic/universal boilerplate with react, redux, webpack and express",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
-    "start": "babel-node ./dev-server.js",
+    "start": "cross-env NODE_ENV=development babel-node ./server.js",
     "build": "rimraf dist && webpack --config ./webpack.config.prod.js",
-    "serve": "php -S 127.0.0.1:3000"
+    "serve": "cross-env NODE_ENV=production babel-node ./server.js"
   },
   "author": "Justin Jung <justinjung04@gmail.com>",
   "license": "MIT",
@@ -39,5 +39,9 @@
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
+  }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinjung04/universal-boilerplate.git"
   }
 }
