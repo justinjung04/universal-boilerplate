@@ -1,26 +1,27 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
+import { renderToString } from 'react-dom/server';
 import { createBrowserHistory } from 'history';
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { StaticRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/app';
-import reducers from './reducers';
 
-const history = createBrowserHistory();
-const store = createStore(reducers, applyMiddleware(routerMiddleware(history)));
-
-render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+if (typeof window !== 'undefined') {
+  render(
+    <BrowserRouter>
       <App />
-    </ConnectedRouter>
-  </Provider>
-, document.getElementById('app'));
+    </BrowserRouter>
+  , document.getElementById('app'));
+} else {
+  global.MyApp = ({ location }) => (
+    <StaticRouter location={location} context={{}}>
+      <App />
+    </StaticRouter>
+  );
 
-if(process.env.NODE_ENV === 'development' && module.hot) {
+  global.renderToString = renderToString;
+}
+
+if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept();
-  module.hot.accept('./reducers', () => {
-    store.replaceReducer(require('./reducers').default);
-  });
 }

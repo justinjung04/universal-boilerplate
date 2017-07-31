@@ -1,13 +1,13 @@
 {
-  "name": "universal-boilerplate",
-  "version": "2.0.0",
-  "description": "Isomorphic/universal boilerplate with react, redux, webpack and express",
+  "name": "webviewer-website",
+  "version": "1.0.0",
+  "description": "WebViewer website",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src",
-    "start": "cross-env NODE_ENV=development babel-node ./server.js",
+    "start": "babel-node ./dev-server.js",
     "build": "rimraf dist && webpack --config ./webpack.config.prod.js",
-    "serve": "cross-env NODE_ENV=production babel-node ./server.js"
+    "serve": "php -S 127.0.0.1:3000"
   },
   "author": "Justin Jung <justinjung04@gmail.com>",
   "license": "MIT",
@@ -22,7 +22,6 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "copy-webpack-plugin": "^4.0.1",
-    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "eslint": "^4.3.0",
     "eslint-plugin-babel": "^4.1.2",
@@ -33,19 +32,12 @@
     "postcss-loader": "^2.0.6",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
-    "react-router-redux": "^5.0.0-alpha.6",
-    "redux": "^3.5.2",
     "rimraf": "^2.5.4",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/justinjung04/universal-boilerplate.git"
   }
 }

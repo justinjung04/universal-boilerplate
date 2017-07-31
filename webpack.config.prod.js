@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -23,12 +22,6 @@ module.exports = {
 				warnings: false
 			}
 		}),
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve(__dirname, 'src', 'assets'),
-				to: path.resolve(__dirname, 'dist', 'assets')
-			}
-		]),
 		new ExtractTextPlugin('bundle.css')
 	],
 	module: {
